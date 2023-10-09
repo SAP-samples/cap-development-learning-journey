@@ -1,0 +1,70 @@
+# In the following requests the variables baseUrl, user and password are used.
+# Their values are set here.
+@baseUrl = http://localhost:4004
+@user = adminuser
+@password = abcd1234
+
+
+### ------------------------------------------------------------------------
+# Get Service Document
+GET {{baseUrl}}/admin
+Authorization: Basic {{user}}:{{password}}
+
+
+### ------------------------------------------------------------------------
+# Get Service Metadata Document
+GET {{baseUrl}}/admin/$metadata
+Authorization: Basic {{user}}:{{password}}
+
+
+### ------------------------------------------------------------------------
+# Get all books with language en
+GET {{baseUrl}}/admin/Books
+Accept-Language: en
+Authorization: Basic {{user}}:{{password}}
+
+
+### ------------------------------------------------------------------------
+# Get all books with language de
+GET {{baseUrl}}/admin/Books
+Accept-Language: de
+Authorization: Basic {{user}}:{{password}}
+
+
+### ------------------------------------------------------------------------
+# Get all authors
+GET {{baseUrl}}/admin/Authors
+Authorization: Basic {{user}}:{{password}}
+
+
+### ------------------------------------------------------------------------
+# Create a new author, then update it and finally delete it again
+# @name createNewAuthor
+POST {{baseUrl}}/admin/Authors
+Content-Type: application/json
+Authorization: Basic {{user}}:{{password}}
+
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+//"dateOfDeath": "1705-05-09",  //Test validation 'validateLifeData'
+  "dateOfDeath": "1805-05-09",  
+  "epoch": {"ID": 120}
+}
+
+###
+
+@authorID = {{createNewAuthor.response.body.$.ID}}
+
+PUT {{baseUrl}}/admin/Authors({{authorID}})
+Content-Type: application/json
+Authorization: Basic {{user}}:{{password}}
+
+{
+  "name": "Johann Christoph Friedrich Schiller"
+}
+
+###
+
+DELETE {{baseUrl}}/admin/Authors({{authorID}})
+Authorization: Basic {{user}}:{{password}}

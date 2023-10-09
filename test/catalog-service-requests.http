@@ -1,0 +1,72 @@
+# In the following requests the variables baseUrl, user and password are used.
+# Their values are set here.
+@baseUrl = http://localhost:4004
+@user = catuser
+@password = abcd1234
+
+
+### ------------------------------------------------------------------------
+# Get Service Document
+GET {{baseUrl}}/cat
+
+
+### ------------------------------------------------------------------------
+# Get Service Metadata Document
+GET {{baseUrl}}/cat/$metadata
+
+
+### ------------------------------------------------------------------------
+# Get all books with language en
+GET {{baseUrl}}/cat/Books
+Accept-Language: en
+
+
+### ------------------------------------------------------------------------
+# Get all books with language de
+GET {{baseUrl}}/cat/Books
+Accept-Language: de
+
+
+### ------------------------------------------------------------------------
+# Get all authors with language de
+GET {{baseUrl}}/cat/Authors
+Accept-Language: de
+
+
+### ------------------------------------------------------------------------
+# Get all authors with language en
+GET {{baseUrl}}/cat/Authors
+Accept-Language: en
+
+
+### ------------------------------------------------------------------------
+# Create a new author
+POST {{baseUrl}}/cat/Authors
+Content-Type: application/json
+
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1805-05-09",
+  "epoch": {"ID": 120}
+}
+
+
+### ------------------------------------------------------------------------
+# Retrieve the ID of the book with the title 'Faust'
+# Use this ID to call the submitOrder action
+# @name getBookID
+GET {{baseUrl}}/cat/Books?$filter=title eq 'Faust'
+
+###
+
+@bookID = {{getBookID.response.body.$.value[0].ID}}
+
+POST {{baseUrl}}/cat/submitOrder
+Content-Type: application/json
+Authorization: Basic {{user}}:{{password}}
+
+{
+  "book": "{{bookID}}",
+  "quantity": 2
+}
