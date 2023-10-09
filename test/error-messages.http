@@ -1,0 +1,50 @@
+# In the following requests the variables baseUrl, user and password are used.
+# Their values are set here.
+@baseUrl = http://localhost:4004
+@user = adminuser
+@password = abcd1234
+
+### ------------------------------------------------------------------------
+# Retrieve the ID of the book with the title 'Faust'
+# Use this ID to call the submitOrder action
+#
+# Cause the following errors:
+# - order quantity 0
+# - order quantity greater than stock
+# - invalid book ID
+# ... and check the returned error messages in German and in English (Accept-Language) 
+# @name getBookID
+GET {{baseUrl}}/cat/Books?$filter=title eq 'Faust'
+
+###
+
+@bookID = {{getBookID.response.body.$.value[0].ID}}
+
+POST {{baseUrl}}/cat/submitOrder
+Accept-Language: de    
+Content-Type: application/json
+Authorization: Basic {{user}}:{{password}}
+
+{
+  "book": "{{bookID}}",
+  "quantity": 2
+}
+
+
+
+### ------------------------------------------------------------------------
+# Create a new author with the date of death before the date of birth.
+#
+# Check the returned error message in German and in English (Accept-Language) 
+
+POST {{baseUrl}}/admin/Authors
+Accept-Language: de   
+Content-Type: application/json
+Authorization: Basic {{user}}:{{password}}
+
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1705-05-09", 
+  "epoch": {"ID": 120}
+}
