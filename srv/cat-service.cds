@@ -2,7 +2,7 @@ using {com.sap.learning as db} from '../db/schema';
 
 service CatalogService @(path: '/cat') {
 
-    @readonly
+    // @readonly
     entity Authors as projection on db.Authors {
         *,
         epoch.name as period
@@ -14,7 +14,7 @@ service CatalogService @(path: '/cat') {
     };
 
 
-    @readonly
+    // @readonly
     entity Books   as projection on db.Books {
         ID,
         title,
@@ -27,10 +27,13 @@ service CatalogService @(path: '/cat') {
         author
     };
 
-    @requires: 'authenticated-user'
+    // @(requires: 'authenticated-user')
     action submitOrder(book : db.Books:ID, quantity : Integer) returns {
         stock : db.Books:stock
     };
 
+//annotate Authors with @readonly;
+//annotate Books with @readonly;
+//annotate submitOrder with @(requires: 'authenticated-user');
 
 }
