@@ -1,44 +1,12 @@
 {
-  "name": "tmp",
+  "name": "cap_lj",
   "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
-  "license": "UNLICENSED",
-  "private": true,
+  "description": "A simple CAP project",
   "dependencies": {
     "@sap/cds": "^7",
     "express": "^4"
   },
-  "devDependencies": {
-    "@cap-js/sqlite": "^1"
-  },
   "scripts": {
     "start": "cds-serve"
-  },
-  "cds": {
-    "requires": {
-      "db": {
-        "[development]": {
-          "kind": "sqlite",
-          "credentials": {
-            "url": "db.sqlite"
-          }
-        }
-      },
-      "auth": {
-        "kind": "mocked",
-        "users": {
-          "adminuser": {
-            "password": "abcd1234",
-            "roles": [
-              "admin"
-            ]
-          },
-          "catuser": {
-            "password": "abcd1234"
-          }
-        }
-      }
-    }
   }
 }
