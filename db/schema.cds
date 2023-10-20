@@ -1,14 +1,18 @@
 namespace com.sap.learning;
 
-entity Books {
-    key ID          : UUID;
-        title       : String(255);
-        author      : Association to Authors;
-        genre       : Genre;
-        publCountry : String(3);
-        stock       : noOfBooks;
-        price       : Price;
-        isHardcover : Boolean;
+using {
+    cuid,
+    managed
+} from '@sap/cds/common';
+
+entity Books : cuid, managed {
+    title       : String(255);
+    author      : Association to Authors;
+    genre       : Genre;
+    publCountry : String(3);
+    stock       : noOfBooks;
+    price       : Price;
+    isHardcover : Boolean;
 }
 
 type Genre     : Integer enum {
@@ -24,11 +28,10 @@ type Price {
 }
 
 
-entity Authors {
-    key ID          : UUID;
-        name        : String(100);
-        dateOfBirth : Date;
-        dateOfDeath : Date;
-        books       : Association to many Books
-                          on books.author = $self;
+entity Authors : cuid, managed {
+    name        : String(100);
+    dateOfBirth : Date;
+    dateOfDeath : Date;
+    books       : Association to many Books
+                      on books.author = $self;
 }
