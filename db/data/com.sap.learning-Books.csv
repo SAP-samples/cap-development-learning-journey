@@ -1,4 +1,4 @@
-ID,title,author_ID,genre,publCountry,stock,price_amount,price_currency,isHardcover
+ID,title,author_ID,genre,publCountry_code,stock,price_amount,price_currency_code,isHardcover
 a1911faf-074e-4ef8-b7aa-5adf0347d5b2, Romeo and Juliet, ffdd2d3e-6604-427d-aca8-c08edafb0c71, 1, GB, 45, 10.95, USD, false
 ea866e8a-f8b7-402c-9500-abd215738ba9, Much Ado About Nothing, ffdd2d3e-6604-427d-aca8-c08edafb0c71, 1, GB, 113, 17.99, USD, true
 0ec991dc-95c5-4d8f-91e6-f81a92744781, Faust, a487f517-61de-429c-bb6a-735a8d4bd3aa, 1, DE, 523, 14.50, USD, false
