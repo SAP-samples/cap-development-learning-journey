@@ -5,38 +5,55 @@
 
 
 ### ------------------------------------------------------------------------
-# Get Service Document
-GET {{baseUrl}}/admin
+# Create a new author with empty name and invalid epoch ID
+POST {{baseUrl}}/admin/Authors
+Content-Type: application/json
+
+{
+  "name": "",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1805-05-09",  
+  "epoch": {"ID": 190}
+}
 
 
 ### ------------------------------------------------------------------------
-# Get Service Metadata Document
-GET {{baseUrl}}/admin/$metadata
+# Create a new book with empty title, invalid author ID and invalid genre
+POST {{baseUrl}}/admin/Books
+Content-Type: application/json
+
+{
+  "title": "",
+  "author_ID": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "genre": 3
+}
 
 
 ### ------------------------------------------------------------------------
-# Get all books with language en
-# with inlined publication country and currency
-GET {{baseUrl}}/admin/Books?$expand=publCountry,price_currency
-Accept-Language: en
+# Create a new book with empty title, invalid genre and without author
+POST {{baseUrl}}/admin/Books
+Content-Type: application/json
+
+{
+  "title": "",
+  "genre": 3
+}
 
 
 ### ------------------------------------------------------------------------
-# Get all books with language de
-# with inlined publication country and currency
-GET {{baseUrl}}/admin/Books?$expand=publCountry,price_currency
-Accept-Language: de
+# Retrieve the ID of William Shakespeare
+# Use this ID to create a new book with stock 0 (default)
+# @name getShakespeare
+GET {{baseUrl}}/admin/Authors?$filter=name eq 'William Shakespeare'
 
+@authorID = {{getShakespeare.response.body.$.value[0].ID}}
 
-### ------------------------------------------------------------------------
-# Get all authors with language en
-# with inlined epoch
-GET {{baseUrl}}/admin/Authors?$expand=epoch
-Accept-Language: en
+###
 
+POST {{baseUrl}}/admin/Books
+Content-Type: application/json
 
-### ------------------------------------------------------------------------
-# Get all authors with language de
-# with inlined epoch
-GET {{baseUrl}}/admin/Authors?$expand=epoch
-Accept-Language: de
+{
+  "title": "Macbeth",
+  "author_ID": "{{authorID}}"
+}
