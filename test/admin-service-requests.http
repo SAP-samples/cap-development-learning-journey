@@ -4,56 +4,67 @@
 
 
 
+
 ### ------------------------------------------------------------------------
-# Create a new author with empty name and invalid epoch ID
+# Create a new author
+# ... and assign the ID of the newly created author to the variable authorID
+# @name createNewAuthor
 POST {{baseUrl}}/admin/Authors
 Content-Type: application/json
 
 {
-  "name": "",
-  "dateOfBirth": "1759-11-10",
-  "dateOfDeath": "1805-05-09",  
-  "epoch": {"ID": 190}
+  "name": "Initial Version"
 }
-
-
-### ------------------------------------------------------------------------
-# Create a new book with empty title, invalid author ID and invalid genre
-POST {{baseUrl}}/admin/Books
-Content-Type: application/json
-
-{
-  "title": "",
-  "author_ID": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  "genre": 3
-}
-
-
-### ------------------------------------------------------------------------
-# Create a new book with empty title, invalid genre and without author
-POST {{baseUrl}}/admin/Books
-Content-Type: application/json
-
-{
-  "title": "",
-  "genre": 3
-}
-
-
-### ------------------------------------------------------------------------
-# Retrieve the ID of William Shakespeare
-# Use this ID to create a new book with stock 0 (default)
-# @name getShakespeare
-GET {{baseUrl}}/admin/Authors?$filter=name eq 'William Shakespeare'
-
-@authorID = {{getShakespeare.response.body.$.value[0].ID}}
 
 ###
+@authorID = {{createNewAuthor.response.body.$.ID}}
 
-POST {{baseUrl}}/admin/Books
+
+
+### Read the newly created user for editing a first time
+# ... and assign the ID of the received ETag to the variable ETag1
+GET {{baseUrl}}/admin/Authors({{authorID}})
+
+###
+@ETag1 = {{createNewAuthor.response.headers.ETag}}
+
+
+
+### Read the newly created user for editing a second time
+# ... and assign the ID of the received ETag to the variable ETag2
+GET {{baseUrl}}/admin/Authors({{authorID}})
+
+###
+@ETag2 = {{createNewAuthor.response.headers.ETag}}
+
+
+
+#   ETag1 and Etag2 match because no changes have been made yet.
+
+
+
+### ------------------------------------------------------------------------
+# Update the newly created author using ETag1 received 
+# when the Author was first read.
+# The update implicitly creates a new ETag value.
+PUT {{baseUrl}}/admin/Authors({{authorID}})
+If-Match: {{ETag1}}
 Content-Type: application/json
 
 {
-  "title": "Macbeth",
-  "author_ID": "{{authorID}}"
+  "name": "Update 1 of Initial Version"
+}
+
+
+
+### ------------------------------------------------------------------------
+# Try another update using ETag2 reveived
+# when the author was read for the second time.
+# This will fail with a HTTP status code 412 Precondition Failed.
+PUT {{baseUrl}}/admin/Authors({{authorID}})
+If-Match: {{ETag2}}
+Content-Type: application/json
+
+{
+  "name": "Update 2 of Initial Version"
 }
