@@ -5,7 +5,7 @@ entity Books {
         title       : String(255);
         genre       : Genre;
         publCountry : String(3);
-        stock       : noOfBooks;
+        stock       : NoOfBooks;
         price       : Price;
         isHardcover : Boolean;
 }
@@ -15,7 +15,7 @@ type Genre     : Integer enum {
     non_fiction = 2;
 }
 
-type noOfBooks : Integer;
+type NoOfBooks : Integer;
 
 type Price {
     amount   : Decimal;
