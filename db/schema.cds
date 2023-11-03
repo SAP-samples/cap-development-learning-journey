@@ -14,7 +14,7 @@ entity Books : cuid, managed {
     author      : Association to Authors  @mandatory  @assert.target;
     genre       : Genre                 @assert.range: true;
     publCountry : Country;
-    stock       : noOfBooks default 0;
+    stock       : NoOfBooks default 0;
     price       : Price;
     isHardcover : Boolean;
 }
@@ -24,7 +24,7 @@ type Genre     : Integer enum {
     non_fiction = 2;
 }
 
-type noOfBooks : Integer;
+type NoOfBooks : Integer;
 
 type Price {
     amount   : Decimal;
