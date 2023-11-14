@@ -1,4 +1,4 @@
-using {com.sap.learning as db} from '../db/schema';
+using com.sap.learning as db from '../db/schema';
 
 service CatalogService @(path: '/cat') {
 
