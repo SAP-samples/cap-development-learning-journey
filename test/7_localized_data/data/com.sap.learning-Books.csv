@@ -1,0 +1,17 @@
+ID,title,author_ID,genre,publCountry_code,stock,price_amount,price_currency_code,isHardcover
+a1911faf-074e-4ef8-b7aa-5adf0347d5b2, Romeo and Juliet, ffdd2d3e-6604-427d-aca8-c08edafb0c71, 1, GB, 45, 10.95, USD, false
+ea866e8a-f8b7-402c-9500-abd215738ba9, Much Ado About Nothing, ffdd2d3e-6604-427d-aca8-c08edafb0c71, 1, GB, 113, 17.99, USD, true
+0ec991dc-95c5-4d8f-91e6-f81a92744781, Faust, a487f517-61de-429c-bb6a-735a8d4bd3aa, 1, DE, 523, 14.50, USD, false
+62e4f16c-bba0-4108-ad16-10111ebbb5e0, Harry Potter and the Philosopher’s Stone, 8238aaf9-f368-414b-a247-ab17ebf0fdec, 1, GB, 23, 24.50, USD, true
+641a20be-fd62-4b18-8305-9fba31a19e1d, Harry Potter and the Chamber of Secrets, 8238aaf9-f368-414b-a247-ab17ebf0fdec, 1, GB, 0, 21.30, USD, true
+18a658a1-caba-4c6c-ac4d-a1e156c8af48, Harry Potter and the Prisoner of Azkaban, 8238aaf9-f368-414b-a247-ab17ebf0fdec, 1, GB, 346, 19.49, USD, true
+30fa76fd-d6cc-4462-bcf9-d9a13f4482aa, Harry Potter and the Goblet of Fire, 8238aaf9-f368-414b-a247-ab17ebf0fdec, 1, GB, 78, 16.89, USD, true
+bb376d7a-af2e-4dd9-8915-230eff1f0429, Harry Potter and the Order of the Phoenix, 8238aaf9-f368-414b-a247-ab17ebf0fdec, 1, GB, 3, 17.89, USD, true
+27b72ab5-0ae7-444d-b439-48c24505a33c, Harry Potter and the Half-Blood Prince, 8238aaf9-f368-414b-a247-ab17ebf0fdec, 1, GB, 187, 20.00, USD, true
+ce2f1f2e-e902-4610-82fe-c7bbdefbf349, Harry Potter and the Deathly Hallows, 8238aaf9-f368-414b-a247-ab17ebf0fdec, 1, GB, 208, 9.99, USD, true
+0c4962b0-0e38-41fe-beec-a29d5baa785a, Roughing It, ce160dae-ff19-4c84-84c5-bb193277cbe0, 1, US, 17, 11.20, USD, true
+2d78104a-6d8b-4475-8fe8-9bc063f0586c, The Adventures of Tom Sawyer, ce160dae-ff19-4c84-84c5-bb193277cbe0, 1, US, 0, 23.49, USD, false
+0707662e-bfb1-4b22-ae04-12a482cc4b63, Life on the Mississippi, ce160dae-ff19-4c84-84c5-bb193277cbe0, 1, US, 47, 19.99, USD, false
+77ee47b3-b6a9-4ba1-bdc2-2d50b6088e91, The Adventures of Huckleberry Finn, ce160dae-ff19-4c84-84c5-bb193277cbe0, 1, US, 19, 7.50, USD, true
+a598198b-21cd-4b46-ab35-42dd3740e9fd, A Brief History of Time, c3eaf4a2-5aa4-48e9-a77c-b79351ed88a3, 2, GB, 23, 32.67, USD, true
+31170e38-3b6c-41d9-8647-a19e8ab58359, The Universe in a Nutshell, c3eaf4a2-5aa4-48e9-a77c-b79351ed88a3, 2, GB, 3, 29.55, USD, true

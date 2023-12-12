@@ -1,0 +1,30 @@
+# In the following requests the variable baseUrl is used.
+# Its value is set here.
+@baseUrl = http://localhost:4004
+
+
+
+### ------------------------------------------------------------------------
+# Get Service Metadata Document
+GET {{baseUrl}}/admin/$metadata
+
+
+### ------------------------------------------------------------------------
+# Get all books with inlined author
+GET {{baseUrl}}/admin/Books?$expand=author
+
+
+### ------------------------------------------------------------------------
+# Get all authors with inlined books
+GET {{baseUrl}}/admin/Authors?$expand=books
+
+
+### ------------------------------------------------------------------------
+# Get all books of William Shakespeare
+# @name getShakespeare
+GET {{baseUrl}}/admin/Authors?$filter=name eq 'William Shakespeare'
+
+###
+@authorID = {{getShakespeare.response.body.$.value[0].ID}}
+
+GET  {{baseUrl}}/admin/Authors({{authorID}})/books
