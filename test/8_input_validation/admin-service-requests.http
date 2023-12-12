@@ -1,0 +1,59 @@
+# In the following requests the variable baseUrl is used.
+# Its value is set here.
+@baseUrl = http://localhost:4004
+
+
+
+### ------------------------------------------------------------------------
+# Create a new author with empty name and invalid epoch ID
+POST {{baseUrl}}/admin/Authors
+Content-Type: application/json
+
+{
+  "name": "",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1805-05-09",  
+  "epoch": {"ID": 190}
+}
+
+
+### ------------------------------------------------------------------------
+# Create a new book with empty title, invalid author ID and invalid genre
+POST {{baseUrl}}/admin/Books
+Content-Type: application/json
+
+{
+  "title": "",
+  "author_ID": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "genre": 3
+}
+
+
+### ------------------------------------------------------------------------
+# Create a new book with empty title, invalid genre and without author
+POST {{baseUrl}}/admin/Books
+Content-Type: application/json
+
+{
+  "title": "",
+  "genre": 3
+}
+
+
+### ------------------------------------------------------------------------
+# Retrieve the ID of William Shakespeare
+# Use this ID to create a new book with stock 0 (default)
+# @name getShakespeare
+GET {{baseUrl}}/admin/Authors?$filter=name eq 'William Shakespeare'
+
+@authorID = {{getShakespeare.response.body.$.value[0].ID}}
+
+###
+
+POST {{baseUrl}}/admin/Books
+Content-Type: application/json
+
+{
+  "title": "Macbeth",
+  "author_ID": "{{authorID}}"
+}
