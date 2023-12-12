@@ -25,6 +25,9 @@ class CatalogService extends cds.ApplicationService {
 
 
     async reduceStock(req) {
+        /* !!! This is only a preliminary, incomplete implementation of the submitOrder action. !!!
+           !!! In the next lesson, we will learn how to use queries.                            !!!
+           !!! These will then be used to complete the implementation.                          !!! */
         const { Books } = this.entities;
         const { book, quantity } = req.data;
 
@@ -32,19 +35,8 @@ class CatalogService extends cds.ApplicationService {
             return req.error('The quantity must be at least 1.');
         }
 
-        const b = await SELECT.one.from(Books).where({ ID: book }).columns(b => { b.stock });
 
-        if (!b) {
-            return req.error(`Book with ID ${book} does not exist.`);
-        }
-
-        let { stock } = b;
-        if (quantity > stock) {
-            return req.error(`${quantity} exceeds stock ${stock} for book with ID ${book}.`);
-        }
-
-        await UPDATE(Books).where({ ID: book }).with({ stock: stock -= quantity });
-        return { stock };
+        return { stock: quantity };
     }
 
 }

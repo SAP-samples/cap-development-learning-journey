@@ -39,27 +39,3 @@ Content-Type: application/json
   "book": "{{bookID}}",
   "quantity": 0
 }
-
-
-
-### ------------------------------------------------------------------------
-# Call the submitOrder action with a quantity that exceeds stock -> error
-POST {{baseUrl}}/cat/submitOrder
-Content-Type: application/json
-
-{
-  "book": "{{bookID}}",
-  "quantity": 999999
-}
-
-
-
-### ------------------------------------------------------------------------
-# Call the submitOrder action with an invalid book ID -> error
-POST {{baseUrl}}/cat/submitOrder
-Content-Type: application/json
-
-{
-  "book": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  "quantity": 2
-}
