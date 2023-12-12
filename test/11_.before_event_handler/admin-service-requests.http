@@ -1,0 +1,17 @@
+# In the following requests the variable baseUrl is used.
+# Its value is set here.
+@baseUrl = http://localhost:4004
+
+
+
+### ------------------------------------------------------------------------
+# Create a new author with the date of death before the date of birth.
+POST {{baseUrl}}/admin/Authors
+Content-Type: application/json
+
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1705-05-09", 
+  "epoch": {"ID": 120}
+}
