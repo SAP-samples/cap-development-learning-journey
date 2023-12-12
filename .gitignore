@@ -1,7 +1,6 @@
 # CAP tmp
 _out
 *.db
-*.sqlite
 connection.properties
 default-*.json
 .cdsrc-private.json
