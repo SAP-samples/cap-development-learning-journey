@@ -35,8 +35,9 @@ class CatalogService extends cds.ApplicationService {
             return req.error('The quantity must be at least 1.');
         }
 
+        let stock = 10;
 
-        return { stock: quantity };
+        return { stock };
     }
 
 }
