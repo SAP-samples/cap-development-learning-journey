@@ -1,0 +1,65 @@
+# In the following requests the variable baseUrl is used.
+# Its value is set here.
+@baseUrl = http://localhost:4004
+
+
+
+### ------------------------------------------------------------------------
+# Get Service Metadata Document
+GET {{baseUrl}}/cat/$metadata
+
+
+
+### ------------------------------------------------------------------------
+# Retrieve the ID of the book with the title 'Faust'
+# Use this ID to call the submitOrder action
+# @name getBookID
+GET {{baseUrl}}/cat/Books?$filter=title eq 'Faust'
+
+###
+
+@bookID = {{getBookID.response.body.$.value[0].ID}}
+
+POST {{baseUrl}}/cat/submitOrder
+Content-Type: application/json
+
+{
+  "book": "{{bookID}}",
+  "quantity": 2
+}
+
+
+
+### ------------------------------------------------------------------------
+# Call the submitOrder action with a quantity of 0 -> error
+POST {{baseUrl}}/cat/submitOrder
+Content-Type: application/json
+
+{
+  "book": "{{bookID}}",
+  "quantity": 0
+}
+
+
+
+### ------------------------------------------------------------------------
+# Call the submitOrder action with a quantity that exceeds stock -> error
+POST {{baseUrl}}/cat/submitOrder
+Content-Type: application/json
+
+{
+  "book": "{{bookID}}",
+  "quantity": 999999
+}
+
+
+
+### ------------------------------------------------------------------------
+# Call the submitOrder action with an invalid book ID -> error
+POST {{baseUrl}}/cat/submitOrder
+Content-Type: application/json
+
+{
+  "book": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "quantity": 2
+}

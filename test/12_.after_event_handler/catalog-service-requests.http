@@ -1,0 +1,9 @@
+# In the following requests the variable baseUrl is used.
+# Its value is set here.
+@baseUrl = http://localhost:4004
+
+
+
+### ------------------------------------------------------------------------
+# Get all books
+GET {{baseUrl}}/cat/Books
