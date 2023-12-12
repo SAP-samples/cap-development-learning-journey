@@ -1,0 +1,123 @@
+# In the following requests the variable baseUrl is used.
+# Its value is set here.
+@baseUrl = http://localhost:4004
+
+
+
+
+### ------------------------------------------------------------------------
+# Retrieve the ID of the book with the title 'Faust'
+# This ID is used to call the submitOrder action of the catalog service
+# @name getBookID
+GET {{baseUrl}}/cat/Books?$filter=title eq 'Faust'
+
+###
+
+@bookID = {{getBookID.response.body.$.value[0].ID}}
+
+
+
+### ------------------------------------------------------------------------
+# Call the submitOrder action with a quantity of 0 -> error
+# Check the returned error message in German and in English (Accept-Language)
+POST {{baseUrl}}/cat/submitOrder
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "book": "{{bookID}}",
+  "quantity": 0
+}
+
+###
+
+POST {{baseUrl}}/cat/submitOrder
+Accept-Language: de
+Content-Type: application/json
+
+{
+  "book": "{{bookID}}",
+  "quantity": 0
+}
+
+
+
+### ------------------------------------------------------------------------
+# Call the submitOrder action with a quantity that exceeds stock -> error
+# Check the returned error message in German and in English (Accept-Language)
+POST {{baseUrl}}/cat/submitOrder
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "book": "{{bookID}}",
+  "quantity": 999999
+}
+
+###
+
+POST {{baseUrl}}/cat/submitOrder
+Accept-Language: de
+Content-Type: application/json
+
+{
+  "book": "{{bookID}}",
+  "quantity": 999999
+}
+
+
+
+### ------------------------------------------------------------------------
+# Call the submitOrder action with an invalid book ID -> error
+# Check the returned error message in German and in English (Accept-Language)
+POST {{baseUrl}}/cat/submitOrder
+Accept-Language: en
+Content-Type: application/json
+
+{
+  "book": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "quantity": 2
+}
+
+###
+
+POST {{baseUrl}}/cat/submitOrder
+Accept-Language: de
+Content-Type: application/json
+
+{
+  "book": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "quantity": 2
+}
+
+
+
+
+
+### ------------------------------------------------------------------------
+# Create a new author using the admin service 
+# with the date of death before the date of birth -> error
+# Check the returned error message in German and in English (Accept-Language) 
+POST {{baseUrl}}/admin/Authors
+Accept-Language: en   
+Content-Type: application/json
+
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1705-05-09", 
+  "epoch": {"ID": 120}
+}
+
+###
+
+POST {{baseUrl}}/admin/Authors
+Accept-Language: de 
+Content-Type: application/json
+
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1705-05-09", 
+  "epoch": {"ID": 120}
+}

@@ -1,0 +1,42 @@
+# In the following requests the variable baseUrl is used.
+# Its value is set here.
+@baseUrl = http://localhost:4004
+
+
+
+### ------------------------------------------------------------------------
+# Get Service Document
+GET {{baseUrl}}/admin
+
+
+### ------------------------------------------------------------------------
+# Get Service Metadata Document
+GET {{baseUrl}}/admin/$metadata
+
+
+### ------------------------------------------------------------------------
+# Get all books with language en
+# with inlined publication country and currency
+GET {{baseUrl}}/admin/Books?$expand=publCountry,price_currency
+Accept-Language: en
+
+
+### ------------------------------------------------------------------------
+# Get all books with language de
+# with inlined publication country and currency
+GET {{baseUrl}}/admin/Books?$expand=publCountry,price_currency
+Accept-Language: de
+
+
+### ------------------------------------------------------------------------
+# Get all authors with language en
+# with inlined epoch
+GET {{baseUrl}}/admin/Authors?$expand=epoch
+Accept-Language: en
+
+
+### ------------------------------------------------------------------------
+# Get all authors with language de
+# with inlined epoch
+GET {{baseUrl}}/admin/Authors?$expand=epoch
+Accept-Language: de

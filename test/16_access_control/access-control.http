@@ -1,0 +1,194 @@
+# In the following requests the variable baseUrl is used.
+# Its value is set here.
+@baseUrl = http://localhost:4004
+
+
+
+############################################################################
+############################################################################
+## CATALOG SERVICE
+############################################################################
+############################################################################
+
+### ------------------------------------------------------------------------
+# Get all books - unauthenticated
+GET {{baseUrl}}/cat/Books
+
+
+### ------------------------------------------------------------------------
+# Get all authors - unauthenticated
+GET {{baseUrl}}/cat/Authors
+
+
+### ------------------------------------------------------------------------
+# Create a new author - unauthenticated
+POST {{baseUrl}}/cat/Authors
+Content-Type: application/json
+
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1805-05-09",
+  "epoch": {"ID": 120}
+}
+
+
+### ------------------------------------------------------------------------
+# Create a new book with author William Shakespeare - unauthenticated
+# @name getShakespeare
+GET {{baseUrl}}/cat/Authors?$filter=name eq 'William Shakespeare'
+
+###
+@authorID = {{getShakespeare.response.body.$.value[0].ID}}
+
+
+###
+POST {{baseUrl}}/cat/Books
+Content-Type: application/json
+
+{
+  "title": "Test Title",
+  "author": { "ID": "{{authorID}}" }
+}
+
+
+
+### ------------------------------------------------------------------------
+# Call the submitOrder action - unauthenticated and authenticated
+# Retrieve the ID of the book with the title 'Faust'
+# This ID is used to call the submitOrder action of the catalog service
+# @name getBookID
+GET {{baseUrl}}/cat/Books?$filter=title eq 'Faust'
+
+###
+@bookID = {{getBookID.response.body.$.value[0].ID}}
+
+
+### ------------------------------------------------------------------------
+# Call the submitOrder action - unauthenticated
+POST {{baseUrl}}/cat/submitOrder
+Content-Type: application/json
+
+{
+  "book": "{{bookID}}",
+  "quantity": 2
+}
+
+
+### ------------------------------------------------------------------------
+# Call the submitOrder action - authenticated
+POST {{baseUrl}}/cat/submitOrder
+Authorization: Basic catuser:abcd1234
+Content-Type: application/json
+
+{
+  "book": "{{bookID}}",
+  "quantity": 2
+}
+
+
+
+
+############################################################################
+############################################################################
+## ADMIN SERVICE
+############################################################################
+############################################################################
+
+### ------------------------------------------------------------------------
+# Get all books - as catuser
+GET {{baseUrl}}/admin/Books
+Authorization: Basic catuser:abcd1234
+
+
+### ------------------------------------------------------------------------
+# Get all books - as adminuser
+GET {{baseUrl}}/admin/Books
+Authorization: Basic adminuser:abcd1234
+
+
+### ------------------------------------------------------------------------
+# Create a new author - as catuser
+POST {{baseUrl}}/admin/Authors
+Authorization: Basic catuser:abcd1234
+Content-Type: application/json
+
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1805-05-09",
+  "epoch": {"ID": 120}
+}
+
+
+### ------------------------------------------------------------------------
+# Create a new author - as adminuser
+POST {{baseUrl}}/admin/Authors
+Authorization: Basic adminuser:abcd1234
+Content-Type: application/json
+
+{
+  "name": "Friedrich Schiller",
+  "dateOfBirth": "1759-11-10",
+  "dateOfDeath": "1805-05-09",
+  "epoch": {"ID": 120}
+}
+
+
+
+### ------------------------------------------------------------------------
+# Delete a book without stock and a book with stock
+# Read the ID of a book without stock
+# @name getBookWithoutStock
+GET {{baseUrl}}/admin/Books?$filter=stock eq 0&$top=1&$select=ID
+Authorization: Basic adminuser:abcd1234
+
+### Assign the received ID to the variable ID1
+@ID1 = {{getBookWithoutStock.response.body.$.value[0].ID}}
+
+
+### ------------------------------------------------------------------------
+# Retrieve the ETag belonging to the read book
+# @name getETag1
+GET {{baseUrl}}/admin/Books({{ID1}})
+Authorization: Basic adminuser:abcd1234
+
+### Assign the received ETag to the variable ETag1
+@ETag1 = {{getETag1.response.headers.ETag}}
+
+
+### ------------------------------------------------------------------------
+# Delete the corresponding book using the ID and the ETag retrieved above
+DELETE {{baseUrl}}/admin/Books({{ID1}})
+If-Match: {{ETag1}}
+Authorization: Basic adminuser:abcd1234
+
+
+
+
+### ------------------------------------------------------------------------
+# Delete a book with stock 
+# Read the ID of a book with stock
+# @name getBookWithStock
+GET {{baseUrl}}/admin/Books?$filter=stock gt 0&$top=1&$select=ID
+Authorization: Basic adminuser:abcd1234
+
+### Assign the received ID to the variable ID2
+@ID2 = {{getBookWithStock.response.body.$.value[0].ID}}
+
+
+### ------------------------------------------------------------------------
+# Retrieve the ETag belonging to the read book
+# @name getETag2
+GET {{baseUrl}}/admin/Books({{ID2}})
+Authorization: Basic adminuser:abcd1234
+
+### Assign the received ETag to the variable ETag2
+@ETag2 = {{getETag2.response.headers.ETag}}
+
+
+### ------------------------------------------------------------------------
+# Delete the corresponding book using the ID and the ETag retrieved above
+DELETE {{baseUrl}}/admin/Books({{ID2}})
+If-Match: {{ETag2}}
+Authorization: Basic adminuser:abcd1234
