@@ -24,7 +24,7 @@ class CatalogService extends cds.ApplicationService {
     }
 
 
-    async reduceStock(req) {
+    reduceStock(req) {
         /* !!! This is only a preliminary, incomplete implementation of the submitOrder action. !!!
            !!! In the next lesson, we will learn how to use queries.                            !!!
            !!! These will then be used to complete the implementation.                          !!! */
