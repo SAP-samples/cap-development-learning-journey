@@ -43,8 +43,8 @@ class CatalogService extends cds.ApplicationService {
             return req.error('ORDER_EXCEEDS_STOCK', [quantity, stock, book]);
         }
 
-        await UPDATE(Books).where({ ID: book }).with({ stock: stock -= quantity });
-        return { stock };
+        await UPDATE(Books).where({ ID: book }).with({ stock: { '-=': quantity } });
+        return { stock: stock - quantity };
     }
 
 }
