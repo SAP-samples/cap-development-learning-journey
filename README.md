@@ -25,7 +25,10 @@ Branch | Related Exercise
 The *main* branch provides the initial template for the exercises that follow the exercise *Create a Hello World Application*. It contains an almost initial CAP project in which only a *test* folder has been created. In this *test* folder you will find *.http* files for testing the respective exercises and *.csv* files with data for filling the database tables.
 
 ## Requirements
-You can complete each of the exercises using your SAP BTP Free Tier account.
+For the exercises of the learning journey, SAP Business Application Studio is used as the development environment. It is assumed that you have access to this development tool.
+
+> [!TIP]
+> If this is not yet the case, you can gain access to the SAP Business Application Studio free of charge via the free tier model for SAP Business Technology Platform (SAP BTP). To do this, read tutorial [Get an Account on SAP BTP to Try Out Free Tier Service Plans](https://developers.sap.com/tutorials/btp-free-tier-account.html) on how to create a free account on SAP BTP. Based on this, video [SAP Business Application Studio Free Tier Model Onboarding](https://www.youtube.com/watch?v=-g7LZHqcbDQ) shows the necessary steps to set up the free tier plan for SAP Business Application Studio.
 
 ## Download and Installation
 
