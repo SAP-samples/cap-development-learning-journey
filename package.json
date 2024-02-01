@@ -1,7 +1,7 @@
 {
   "name": "cap-development-learning-journey",
   "version": "1.0.0",
-  "description": "A simple CAP project.",
+  "description": "A simple CAP project",
   "dependencies": {
     "@sap/cds": "^7",
     "express": "^4"
