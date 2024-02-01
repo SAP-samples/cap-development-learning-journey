@@ -47,19 +47,15 @@ To display the content of a specific branch or to continue development from a sp
 git checkout <branch>
 ```
 
-## Known Issues
-
-
-1. If you need support, please post your issues in our [SAP BTP Learning Group](https://groups.community.sap.com/t5/sap-btp-learning/gh-p/SAP-BTP-Learning).
-
 ## How to obtain support
 
-To get support during the exercises, please [ask a question in our SAP BTP Learning Group](https://groups.community.sap.com/t5/sap-btp-learning/gh-p/sapui5-development).
+If you need support, please post your issues in our [SAP Learning Group](https://community.sap.com/t5/sap-learning/gh-p/learning).
+
 
 ## Contributing
-If you have suggestions on how to improve the tutorial, you're welcome to provide your input [here](https://github.com/SAP-samples/sapui5-development-learning-journey).
+If you have suggestions on how to improve the tutorial, you're welcome to provide your input [here](https://github.com/SAP-samples/cap-development-learning-journey).
 
 If you wish to contribute code, offer fixes or improvements, please send a pull request. Due to legal reasons, contributors will be asked to accept a DCO when they create the first pull request to this project. This happens in an automated fashion during the submission process. SAP uses [the standard DCO text of the Linux Foundation](https://developercertificate.org/).
 
 ## License
-Copyright (c) 2022 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
+Copyright (c) 2024 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
