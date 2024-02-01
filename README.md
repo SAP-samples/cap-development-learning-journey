@@ -32,16 +32,16 @@ For the exercises of the learning journey, SAP Business Application Studio is us
 
 ## Download and Installation
 
-To get started with the first exercise, simply run the following commands in your terminal:
+To clone this repository in SAP Business Application Studio, run the following command in a terminal::
 
 ```sh
-git clone https://github.com/SAP-samples/sapui5-development-learning-journey
+git clone https://github.com/SAP-samples/cap-development-learning-journey.git
 ```
 
-We recommend to follow the instructions in the [learning journey](https://learning.sap.com/learning-journey/sapui5-development-learning-journey) to get started.
+We recommend that you follow the instructions in the [learning journey](https://learning.sap.com/learning-journeys/cap-development-learning-journey) to get started.
 
 
-If you want to start or continue from a specific unit or exercise, get the name of its branch from the tutorial, clone this repository and switch to the desired branch:
+To display the content of a specific branch or to continue development from a specific branch, you can use the following command to switch to a branch:
 
 ```sh
 git checkout <branch>
