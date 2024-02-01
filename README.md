@@ -1,9 +1,28 @@
 # Welcome to the Learning Journey "Getting Started with the SAP Cloud Application Programming Model"
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/cap-development-learning-journey)](https://api.reuse.software/info/github.com/SAP-samples/cap-development-learning-journey)
 
-Welcome to this repository for the learning journey "Getting Started with the SAP Cloud Application Programming Model" published on [SAP Learning](https://learning.sap.com/learning-journeys/). The repository contains an initial template for the exercises (*main* branch) as well as a separate branch for each exercise with the corresponding sample solution:
+Welcome to this repository for the learning journey "Getting Started with the SAP Cloud Application Programming Model" published on [SAP Learning](https://learning.sap.com/learning-journeys/). The repository contains an initial template for the exercises (*main* branch) as well as separate branches for the exercises with the corresponding sample solutions:
 
+Branch | Related Exercise
+---------|----------
+`1_hello_world` | Create a Hello World Application
+`2_domain_model` | Capture a Domain Model
+`3_service_definition` | Define a Service
+`4_SQLite_database` | Set Up a Persistent SQLite Database with Initial Data for Development
+`5_associations` | Add Associations to the Domain Model
+`6_common_reuse_aspects` | Use Pre-Defined Aspects
+`7_localized_data` | Work with Localized Data, Code Lists and Common Reuse Types
+`8_input_validation` | Implement Input Validation
+`9_concurrency_control` | Add Optimistic Concurrency Control
+`10_denormalized_views` | Define a Service Based on Denormalized Views
+`11_.before_event_handler` | Provide a .before Event Handler
+`12_.after_event_handler` | Provide a .after Event Handler
+`13_custom_action` | Define and Implement a Custom Action 
+`14_queries` | Use Queries in the Implementation of CAP Services  
+`15_error_messages` | Use Localized Error Messages
+`16_access_control` | Add Restrictions to the CDS Model
 
+The *main* branch provides the initial template for the exercises that follow the exercise *Create a Hello World Application*. It contains an almost initial CAP project in which only a *test* folder has been created. In this *test* folder you will find *.http* files for testing the respective exercises and *.csv* files with data for filling the database tables.
 
 ## Requirements
 You can complete each of the exercises using your SAP BTP Free Tier account.
