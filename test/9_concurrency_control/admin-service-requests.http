@@ -21,7 +21,7 @@ Content-Type: application/json
 
 
 
-### Read the newly created user for editing a first time
+### Read the newly created author for editing a first time
 # ... and assign the ID of the received ETag to the variable ETag1
 GET {{baseUrl}}/admin/Authors({{authorID}})
 
@@ -30,7 +30,7 @@ GET {{baseUrl}}/admin/Authors({{authorID}})
 
 
 
-### Read the newly created user for editing a second time
+### Read the newly created author for editing a second time
 # ... and assign the ID of the received ETag to the variable ETag2
 GET {{baseUrl}}/admin/Authors({{authorID}})
 
