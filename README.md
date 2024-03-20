@@ -38,7 +38,7 @@ To clone this repository in SAP Business Application Studio, run the following c
 git clone https://github.com/SAP-samples/cap-development-learning-journey.git
 ```
 
-We recommend that you follow the instructions in the [learning journey](https://learning.sap.com/learning-journeys/cap-development-learning-journey) to get started.
+We recommend that you follow the instructions in the [learning journey](https://learning.sap.com/learning-journeys/getting-started-with-sap-cloud-application-programming-model) to get started.
 
 
 To display the content of a specific branch or to continue development from a specific branch, you can use the following command to switch to a branch:
